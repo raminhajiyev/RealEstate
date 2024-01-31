@@ -24,6 +24,17 @@ namespace RealEstate.Repositories.CategoryRepository
             }
         }
 
+        public async void DeleteCategory(int id)
+        {
+            string query = "delete from Category where CategoryId=@categoryId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryId", id);
+            using (var connections = _context.CreateConnection())
+            {
+                await connections.ExecuteAsync(query, parameters);
+            }
+        }
+
         public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
         {
             string query= "Select * From Category";
@@ -31,6 +42,19 @@ namespace RealEstate.Repositories.CategoryRepository
             {
                 var values=await connection.QueryAsync<ResultCategoryDto>(query);  
                 return values.ToList();
+            }
+        }
+
+        public async void UpdateCategory(UpdateCategoryDto categoryDto)
+        {
+            string query = "Update Category set CategoryName=@categoryName, CategoryStatus=@categoryStatus where CategoryId=@categoryId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryId", categoryDto.CategoryId);
+            parameters.Add("@categoryName", categoryDto.CategoryName);
+            parameters.Add("@categoryStatus", categoryDto.CategoryStatus);
+            using (var connections = _context.CreateConnection())
+            {
+                await connections.ExecuteAsync(query, parameters);
             }
         }
     }

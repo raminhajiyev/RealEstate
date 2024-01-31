@@ -28,5 +28,17 @@ namespace RealEstate.Controllers
             _categoryRepository.CreateCategory(createCategoryDto);
             return Ok("New data has been added successfully");
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            _categoryRepository.DeleteCategory(id);
+            return Ok("Data has been deleted successfully");
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        {
+            _categoryRepository.UpdateCategory(updateCategoryDto);
+            return Ok("Data has been updated successfully");
+        }
     }
 }
