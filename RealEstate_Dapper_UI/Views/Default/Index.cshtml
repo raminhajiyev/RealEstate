@@ -4,5 +4,11 @@
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 
-<h1>Index</h1>
+
+@await Component.InvokeAsync("_HighlightVCPartial")
+@await Component.InvokeAsync("_TopPropertiesVCPartial")
+@await Component.InvokeAsync("_AboutUsVCPartial")
+@await Component.InvokeAsync("_ServicesVCPartial")
+@await Component.InvokeAsync("_ExploreVCPartial")
+@await Component.InvokeAsync("_SponsorVCPartial")
 
