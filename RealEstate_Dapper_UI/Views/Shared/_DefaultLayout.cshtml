@@ -1,0 +1,15 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+@await Component.InvokeAsync("_HeaderVCPartial")
+  <body>
+    @await Component.InvokeAsync("_NavbarVCPartial")
+    @RenderBody()
+    @await Component.InvokeAsync("_FooterVCPartial")
+    @await Component.InvokeAsync("_ScriptVCPartial")
+</body>
+</html>
