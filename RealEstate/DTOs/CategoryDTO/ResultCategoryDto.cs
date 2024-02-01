@@ -1,4 +1,4 @@
-﻿namespace RealEstate.DTOs
+﻿namespace RealEstate.DTOs.CategoryDTO
 {
     public class ResultCategoryDto
     {
