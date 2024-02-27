@@ -1,7 +1,8 @@
 ﻿namespace RealEstate.DTOs.EmployeeDTO
 {
-    public class CreateEmployeeDto
+    public class GetByIdEmployeeDto
     {
+        public int EmployeeId { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Phone { get; set; }

@@ -15,13 +15,14 @@ namespace RealEstate.Repositories.EmployeeRepository
 
         public async void CreateEmployee(CreateEmployeeDto createEmployeeDto)
         {
-            string query = "insert into Employee(Name, Title, Mail, Phone, ImageUrl) values(@name, @title, @mail, @phone, @imageurl)";
+            string query = "insert into Employee(Name, Title, Mail, Phone, ImageUrl, Status) values(@name, @title, @mail, @phone, @imageurl, @status)";
             var parameters = new DynamicParameters();
             parameters.Add("@name", createEmployeeDto.Name);
             parameters.Add("@title", createEmployeeDto.Title);
             parameters.Add("@mail", createEmployeeDto.Mail);
             parameters.Add("@phone", createEmployeeDto.Phone);
             parameters.Add("@imageurl", createEmployeeDto.ImageUrl);
+            parameters.Add("@status", createEmployeeDto.Status);
            
             using (var connection = _context.CreateConnection())
             {
@@ -50,10 +51,21 @@ namespace RealEstate.Repositories.EmployeeRepository
             }
         }
 
+        public async Task<GetByIdEmployeeDto> GetEmployee(int id)
+        {
+            string query = "Select * From Employee where EmployeeId=@EmployeeId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@EmployeeId", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIdEmployeeDto>(query, parameters);
+                return values;
+            }
+        }
 
         public async void UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
         {
-            string query = "Update Employee set Name=@name,Title=@title, Mail=@mail, Phone=@phone, ImageUrl=@imageurl where EmployeeId=@employeeId";
+            string query = "Update Employee set Name=@name,Title=@title, Mail=@mail, Phone=@phone, ImageUrl=@imageurl, Status=@status where EmployeeId=@employeeId";
             var parameters = new DynamicParameters();
             parameters.Add("@employeeId", updateEmployeeDto.EmployeeId);
             parameters.Add("@name", updateEmployeeDto.Name);
@@ -61,6 +73,7 @@ namespace RealEstate.Repositories.EmployeeRepository
             parameters.Add("@mail", updateEmployeeDto.Mail);
             parameters.Add("@phone", updateEmployeeDto.Phone);
             parameters.Add("@imageurl", updateEmployeeDto.ImageUrl);
+            parameters.Add("@status", updateEmployeeDto.Status);
             using (var connections = _context.CreateConnection())
             {
                 await connections.ExecuteAsync(query, parameters);

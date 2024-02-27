@@ -1,0 +1,50 @@
+﻿@model List<ResultEmployeeDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
+    int count = 1;
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Employee Table</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">ImageUrl</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@item.name</td>
+                            <td>@item.title</td>
+                            <td>@item.mail</td>
+                            <td>@item.phone</td>
+                            <td>@item.imageurl</td>
+                            <td>@item.status</td>
+                            <td><a href="/Employee/DeleteEmployee/@item.employeeId" class="btn btn-outline-danger">Delete</a> </td>
+                            <td><a href="/Employee/UpdateEmployee/@item.employeeId" class="btn btn-outline-success">Update</a> </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <br />
+            <a href="/Employee/CreateEmployee/" class="btn btn-primary">Add</a>
+        </div>
+    </div>
+</div>
+

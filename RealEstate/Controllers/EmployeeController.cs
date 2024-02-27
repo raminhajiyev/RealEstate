@@ -30,7 +30,7 @@ namespace RealEstate.Controllers
             _employeeRepository.CreateEmployee(createEmployeeDto);
             return Ok("New data has been added successfully");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             _employeeRepository.DeleteEmployee(id);
@@ -41,6 +41,12 @@ namespace RealEstate.Controllers
         {
             _employeeRepository.UpdateEmployee(updateEmployeeDto);
             return Ok("Data has been updated successfully");
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdEmployee(int id)
+        {
+            var values = await _employeeRepository.GetEmployee(id);
+            return Ok(values);
         }
 
     }

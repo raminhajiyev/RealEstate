@@ -9,5 +9,6 @@ namespace RealEstate.Repositories.EmployeeRepository
         void CreateEmployee(CreateEmployeeDto createEmployeeDto);
         void DeleteEmployee(int id);
         void UpdateEmployee(UpdateEmployeeDto updateEmployeeDto);
+        Task<GetByIdEmployeeDto> GetEmployee(int id);
     }
 }
