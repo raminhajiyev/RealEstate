@@ -60,6 +60,7 @@ namespace RealEstate_Dapper_UI.Controllers
             var jsonData6 = await responseMessage6.Content.ReadAsStringAsync();
             ViewBag.passiveCategory = jsonData6;
             #endregion
+
             return View();
         }
     }

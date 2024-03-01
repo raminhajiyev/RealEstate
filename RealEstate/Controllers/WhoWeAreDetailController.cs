@@ -31,7 +31,7 @@ namespace RealEstate.Controllers
             _detailRepository.CreateDetail(createWhoWeAreDetailDto);
             return Ok("New data has been added successfully");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDetail(int id)
         {
             _detailRepository.DeleteDetail(id);

@@ -1,0 +1,30 @@
+﻿@model UpdateWhoWeAreDetailDtos
+@{
+    ViewData["Title"] = "UpdateWhoWeAreDetail";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
+}
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Edit Details</h6>
+        <form method="post">
+            <div class="mb-3">
+                <input type="hidden" class="form-control" asp-for="WhoWeAreDetailId">
+                <br />
+                <label for="exampleInputEmail1" class="form-label">Title</label>
+                <input type="text" class="form-control" asp-for="Title">
+                <br />
+                <label for="exampleInputEmail1" class="form-label">Subtitle</label>
+                <input type="text" class="form-control" asp-for="Subtitle">
+                <br />
+                <label for="exampleInputEmail1" class="form-label">Description 1</label>
+                <input type="text" class="form-control" asp-for="Description1">
+                <br />
+                <label for="exampleInputEmail1" class="form-label">Description 2</label>
+                <input type="text" class="form-control" asp-for="Description2">
+                <br />
+                <button type="submit" class="btn btn-primary">Save</button></div>
+        </form>
+    </div>
+</div>
+

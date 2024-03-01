@@ -30,7 +30,7 @@ namespace RealEstate.Controllers
             _serviceRepository.CreateService(servicehoWeAreServiceDto);
             return Ok("New data has been added successfully");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
             _serviceRepository.DeleteService(id);
