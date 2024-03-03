@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RealEstate_Dapper_UI.DTOs.WhoWeAreDto;
+using RealEstate_Dapper_UI.DTOs.PopularLocationsDto;
 using System.Text;
 
 namespace RealEstate_Dapper_UI.Controllers
 {
-    public class WhoWeAreServiceController : Controller
+    public class PopularLocationsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public WhoWeAreServiceController(IHttpClientFactory httpClientFactory)
+        public PopularLocationsController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,29 +17,29 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44393/api/WhoWeAreService");
+            var responseMessage = await client.GetAsync("https://localhost:44393/api/PopularLocation");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultWhoWeAreServiceDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultPopularLocationsDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateWhoWeAreService()
+        public IActionResult CreatePopularLocations()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWhoWeAreService(CreateWhoWeAreServiceDtos createWhoWeAreServiceDtos)
+        public async Task<IActionResult> CreatePopularLocations(CreatePopularLocationsDto createPopularLocationsDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createWhoWeAreServiceDtos);
+            var jsonData = JsonConvert.SerializeObject(createPopularLocationsDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44393/api/WhoWeAreService", content);
+            var responseMessage = await client.PostAsync("https://localhost:44393/api/PopularLocation", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -47,10 +47,10 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteWhoWeAreService(int id)
+        public async Task<IActionResult> DeletePopularLocations(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44393/api/WhoWeAreService/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44393/api/PopularLocation/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -59,25 +59,25 @@ namespace RealEstate_Dapper_UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateWhoWeAreService(int id)
+        public async Task<IActionResult> UpdatePopularLocations(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44393/api/WhoWeAreService/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44393/api/PopularLocation/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateWhoWeAreServiceDtos>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdatePopularLocationsDto>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateWhoWeAreService(UpdateWhoWeAreServiceDtos updateWhoWeAreServiceDtos)
+        public async Task<IActionResult> UpdatePopularLocations(UpdatePopularLocationsDto updatePopularLocationsDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateWhoWeAreServiceDtos);
+            var jsonData = JsonConvert.SerializeObject(updatePopularLocationsDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44393/api/WhoWeAreService", content);
+            var responseMessage = await client.PutAsync("https://localhost:44393/api/PopularLocation", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

@@ -30,7 +30,7 @@ namespace RealEstate.Controllers
             _popularLocationRepository.CreatePopularLocation(createPopularLocationDto);
             return Ok("New data has been added successfully");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePopularLocation(int id)
         {
             _popularLocationRepository.DeletePopularLocation(id);

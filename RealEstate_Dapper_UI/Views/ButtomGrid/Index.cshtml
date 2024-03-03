@@ -1,0 +1,40 @@
+﻿@model List<ResultButtomGridDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">ButtomGrid Table</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@item.Icon</td>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td><a href="/ButtomGrid/UpdateButtomGrid/@item.BottomGridId" class="btn btn-outline-success">Update</a> </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
