@@ -1,0 +1,29 @@
+﻿@model List<RealEstate_Dapper_UI.DTOs.UserContactDto.Last4MessagesDto>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-md-6 col-xl-4">
+            <div class="h-100 bg-light rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h6 class="mb-0">Messages</h6>
+                    <a href="">Show All</a>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="d-flex align-items-center border-bottom py-3">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">@item.Fullname</h6>
+                                <small>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</small>
+                            </div>
+                            <span>@item.Message.Substring(0,3)...</span>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RealEstate.Repositories.BottomGridRepository;
+﻿using Microsoft.AspNetCore.Mvc;
 using RealEstate.Repositories.StatisticsRepository;
 
 namespace RealEstate.Controllers
